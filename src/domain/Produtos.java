@@ -25,7 +25,7 @@ public class Produtos {
     public void adicionarProdutoEstoque() {
         System.out.print("Descrição do Produto: ");
         this.descricao = scanner.nextLine();
-        System.out.print("Preço de Compra do Produto: R$ ");
+        System.out.print("Preço de Compra Unitário do Produto: R$ ");
         this.precoCompra = scanner.nextDouble();
         Map<String, Double> descricaoPreco = new HashMap<>();
         descricaoPreco.put(descricao, precoCompra);
@@ -42,24 +42,9 @@ public class Produtos {
         }
     }
 
-//    public double valorDeCompraEstoque() {
-//        return this.precoCompra * this.quantidade;
-//    }
-
-//    public void adicionarProdutosEstoque() {
-//        Map<String, String> produtosDescricao = new HashMap<>();
-//        produtosDescricao.put(nome, descricao);
-//        for (Map.Entry<String, String> entry : produtosDescricao.entrySet()) {
-//            System.out.println("Produto: " + entry.getKey() + "\nDescrição: " + entry.getValue());
-//        }
-//        Map<Double, Integer> valorQuantidade = new HashMap<>();
-//        valorQuantidade.put(precoCompra, quantidade);
-//        for (Map.Entry<Double, Integer> entry : valorQuantidade.entrySet()) {
-//            System.out.println("Valor de Compra: " + nfa.format(entry.getKey()) + "\nQuantidade: " + entry.getValue() + " un");
-//        }
-//        System.out.println("Valor no Estoque: " + nfa.format(valorDeCompraEstoque()));
-//        System.out.println("-----------------------");
-//    }
+    public double valorProdutoEstoque() {
+        return this.precoCompra * this.quantidade;
+    }
 
     @Override
     public String toString() {
