@@ -10,12 +10,11 @@ public class EstoqueTest {
         Locale localeDefault = Locale.getDefault();
         NumberFormat nfa = NumberFormat.getCurrencyInstance(localeDefault);
 
-        Produtos produtos = new Produtos("Parafuso", 100);
-        Produtos produtos1 = new Produtos("Porca", 100);
-        produtos.adicionarProdutoEstoque();
-//        produtos1.adicionarProdutoEstoque();
-//        System.out.println("Valor Total Estoque: " + nfa.format(produtos.valorProdutoEstoque() + produtos1.valorProdutoEstoque()));
-        produtos.verificarEstoque();
-        System.out.println(nfa.format(produtos.valorProdutoEstoque()));
+        Produtos produtos = new Produtos(1L, "Parafuso", "3/4\"", 100);
+        Produtos produtos1 = new Produtos(2L, "Porca", "3/4\"", 100);
+        produtos.adicionarProdutoEstoqueID(produtos);
+        produtos1.adicionarProdutoEstoqueID(produtos1);
+        Produtos.verificarEstoque();
+//        System.out.println(nfa.format(produtos.valorProdutoEstoque()));
     }
 }

@@ -3,9 +3,9 @@ package domain;
 
 import java.text.NumberFormat;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Produtos {
+    private static List<Produtos> produtoList = new ArrayList<>();
     private String nome;
     private String descricao;
     private double precoCompra;
@@ -14,31 +14,23 @@ public class Produtos {
     private int quantidade;
     Locale localeDefault = Locale.getDefault();
     NumberFormat nfa = NumberFormat.getCurrencyInstance(localeDefault);
-    Scanner scanner = new Scanner(System.in);
 
-    public Produtos(String nome, int quantidade) {
+    public Produtos(Long id, String nome, String descricao, int quantidade) {
         this.nome = nome;
-        this.id = ThreadLocalRandom.current().nextLong(0, 1000);
+        this.id = id;
+        this.descricao = descricao;
         this.quantidade = quantidade;
     }
 
-    public void adicionarProdutoEstoque() {
-        System.out.print("Descrição do Produto: ");
-        this.descricao = scanner.nextLine();
-        System.out.print("Preço de Compra Unitário do Produto: R$ ");
-        this.precoCompra = scanner.nextDouble();
-        Map<String, Double> descricaoPreco = new HashMap<>();
-        descricaoPreco.put(descricao, precoCompra);
-        for (Map.Entry<String, Double> entry : descricaoPreco.entrySet()) {
-            System.out.println("Descrição: " + entry.getKey() + "\"\nPreço de Compra: " + nfa.format(entry.getValue()));
-        }
+    public void adicionarProdutoEstoqueID(Produtos produtos) {
+        produtoList.add(produtos);
     }
 
-    public void verificarEstoque() {
-        if (this.quantidade == 0) {
+    public static void verificarEstoque() {
+        if (produtoList.isEmpty()) {
             System.out.println("Não há em estoque!");
         } else {
-            System.out.println("Produto: " + this.nome + " / Descrição: " + this.descricao + "\" / Quantidade: " + this.quantidade + " un");
+            System.out.println(produtoList);
         }
     }
 
@@ -55,7 +47,7 @@ public class Produtos {
                 ", precoVenda=" + precoVenda +
                 ", id=" + id +
                 ", quantidade=" + quantidade +
-                '}';
+                "}\n";
     }
 
     @Override
