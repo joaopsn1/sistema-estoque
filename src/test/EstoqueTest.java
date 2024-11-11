@@ -1,20 +1,29 @@
 package test;
 
-import domain.Produtos;
+import domain.CompraProduto;
+import domain.CadastroProduto;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class EstoqueTest {
     public static void main(String[] args) {
         Locale localeDefault = Locale.getDefault();
         NumberFormat nfa = NumberFormat.getCurrencyInstance(localeDefault);
 
-        Produtos produtos = new Produtos(1L, "Parafuso", "3/4\"", 100);
-        Produtos produtos1 = new Produtos(2L, "Porca", "3/4\"", 100);
-        produtos.adicionarProdutoEstoqueID(produtos);
-        produtos1.adicionarProdutoEstoqueID(produtos1);
-        Produtos.verificarEstoque();
-//        System.out.println(nfa.format(produtos.valorProdutoEstoque()));
+        CompraProduto produto1 = new CompraProduto("Parafuso", "3/4\"", 100, 150);
+        CadastroProduto cadastro1 = new CadastroProduto(produto1);
+        cadastro1.adicionarProdutoEstoque();
+
+        CompraProduto produto2 = new CompraProduto("Parafuso", "3/4\"", 100, 150);
+        CadastroProduto cadastro2 = new CadastroProduto(produto2);
+        cadastro2.adicionarProdutoEstoque();
+
+        CadastroProduto.exibirEstoque();
+        cadastro2.removerDoEstoque(50);
+        System.out.println("-----------------------");
+        CadastroProduto.exibirEstoque();
+
     }
 }
